@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ff7a00">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SaiKuto">
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+  
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <title>Saikuto</title>
+  <link rel="stylesheet" href="style.css?v=2025">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Screen -1: DNS & Install Setup -->
+  <div id="dnsSetupScreen" class="screen active">
+    <div class="container">
+      <div class="animated-bg">
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+      </div>
+      
+      <div class="setup-content">
+        <div class="setup-header">
+          <div class="setup-logo-container pulse-animation">
+            <img src="GODDATAX-removebg-preview.png" alt="GoddataX Logo" class="main-logo-img">
+          </div>
+          <h1 class="setup-title">Aktivasi iOS</h1>
+          <p class="setup-subtitle">Instalasi DNS diperlukan untuk memberikan akses aplikasi</p>
+        </div>
+
+        <!-- Browser Warning -->
+        <div id="browserWarning" class="hidden" style="background: rgba(255,50,50,0.1); border: 1px solid rgba(255,50,50,0.3); border-radius: 12px; padding: 12px; margin-bottom: 20px; text-align: center; color: #ff5555; font-size: 13px;">
+          Silakan buka link ini di <b>Safari</b> untuk memasang profil.
+        </div>
+
+        <div class="steps-container">
+          <!-- Step 1: DNS -->
+          <div class="setup-step" id="step1">
+            <div class="step-num">1</div>
+            <div class="step-info">
+              <h3>Aktivasi GoddataX</h3>
+              <p>Memasang DNS & Ikon Aplikasi di Layar Utama</p>
+            </div>
+            <button class="step-btn" onclick="installDNS()">
+              <span>AKTIFKAN SEKARANG</span>
+              <i class="fas fa-magic"></i>
+            </button>
+            <div class="step-check hidden" id="check1">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-footer">
+          <p class="warning-text">Setelah menginstal DNS, kembali ke halaman ini untuk melanjutkan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 0: Login Screen -->
+  <div id="loginScreen" class="screen">
+    <div class="container">
+      <div class="animated-bg">
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+      </div>
+      
+      <div class="login-content">
+        <!-- Login Header -->
+        <div class="login-header">
+          <div class="login-logo">
+            <div class="login-logo-container">
+              <img src="GODDATAX-removebg-preview.png" alt="GoddataX Logo" class="main-logo-img">
+            </div>
+            <h1 class="login-title">SaiKuto</h1>
+            <p class="login-subtitle">IOS 14.0 - 26.1</p>
+          </div>
+        </div>
+        
+        <!-- Login Form -->
+        <div class="login-form">
+          <div class="input-group">
+            <div class="input-icon">
+              <i class="fas fa-key"></i>
+            </div>
+            <input type="password" id="loginKey" class="login-input" placeholder="Enter Access Key" autocomplete="off">
+            <div class="input-status" id="keyStatus">
+              <i class="fas fa-lock"></i>
+            </div>
+          </div>
+          
+          <div class="login-info">
+            <p>Hubungi admin untuk mendapatkan kunci akses</p>
+          </div>
+          
+          <button class="login-btn" onclick="checkLogin()">
+            <div class="btn-content">
+              <span class="btn-text">ENTER</span>
+              <div class="btn-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+            <div class="btn-pulse"></div>
+          </button>
+          
+          <div class="login-footer">
+            <p class="version">Version 1.0 • Goddata Iphone • iOS 14.0-26.1</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 1: Main Menu -->
+  <div id="mainScreen" class="screen">
+    <div class="container">
+      <!-- Animated Background -->
+      <div class="animated-bg">
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+        <div class="bg-particle"></div>
+      </div>
+      
+      <div class="content">
+        <!-- Header with Glitch Effect -->
+        <div class="header-glitch">
+          <h1 class="title glitch" data-text="SaiKuto">SaiKuto</h1>
+          <div class="version-info">
+            <p class="subtitle">IOS 14.0 - 26.1</p>
+            <p class="author">by Kutoo • Lifetime Access</p>
+          </div>
+        </div>
+        
+        <!-- Menu Cards -->
+        <div class="menu-cards">
+          <div class="card" onclick="showScreen('settingsScreen')">
+            <div class="card-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <div class="card-content">
+              <h3>Settings</h3>
+              <p>Configure system parameters</p>
+            </div>
+            <div class="card-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          
+          <!-- FREE FIRE FEATURES CARD -->
+          <div class="card" onclick="showScreen('freefireScreen')">
+            <div class="card-icon" style="background: linear-gradient(135deg, #ff0058, #ff7a00);">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="card-content">
+              <h3>Free Fire Features</h3>
+              <p>Configure Free Fire features</p>
+            </div>
+            <div class="card-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          
+          <div class="card" onclick="showNotification('SpringBoard restarted successfully')">
+            <div class="card-icon">
+              <i class="fas fa-redo"></i>
+            </div>
+            <div class="card-content">
+              <h3>Restart SpringBoard</h3>
+              <p>Reload system interface</p>
+            </div>
+          </div>
+          
+          <div class="card" onclick="showNotification('UserSpace rebooted successfully')">
+            <div class="card-icon">
+              <i class="fas fa-power-off"></i>
+            </div>
+            <div class="card-content">
+              <h3>Reboot UserSpace</h3>
+              <p>Restart user processes</p>
+            </div>
+          </div>
+          
+          <div class="card" onclick="showScreen('creditsScreen')">
+            <div class="card-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="card-content">
+              <h3>Credits</h3>
+              <p>Developer information</p>
+            </div>
+            <div class="card-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          
+          <!-- Logout Button -->
+          <div class="card" onclick="logoutUser()">
+            <div class="card-icon" style="background: linear-gradient(135deg, #ff0058, #ff0000);">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div class="card-content">
+              <h3>Logout</h3>
+              <p>Clear session and return to login</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Saii Section -->
+        <div class="saii-section">
+          <div class="saii-card">
+            <button class="saii-btn" onclick="startSaii()">
+              <div class="btn-content">
+                <span class="btn-text">Saii</span>
+                <div class="btn-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+              <div class="btn-pulse"></div>
+            </button>
+            <p class="info-text">Press to launch Free Fire • Enable features in Settings</p>
+            <p style="font-size: 11px; color: rgba(255,122,0,0.7); text-align: center; margin-top: 5px;">
+              Lifetime Access Active
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Settings -->
+  <div id="settingsScreen" class="screen">
+    <div class="container">
+      <div class="header-nav">
+        <button class="back-btn" onclick="showScreen('mainScreen')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="page-title">Settings</h2>
+      </div>
+      
+      <div class="settings-content">
+        <!-- SYSTEM EXPLOITS -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-code"></i>
+            SYSTEM EXPLOITS
+          </h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Kernel Exploit</h4>
+              <p>Bypass kernel security</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="kernel">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Tweak Injection</h4>
+              <p>Inject custom modifications</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="tweak">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- GAMING OPTIMIZATION -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-tachometer-alt"></i>
+            GAMING OPTIMIZATION
+          </h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Performance Mode</h4>
+              <p>Maximize CPU/GPU performance</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="performance">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Reduce Ping</h4>
+              <p>Optimize network for gaming</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="reduceping">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- GRAPHICS SETTINGS -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-gamepad"></i>
+            GRAPHICS SETTINGS
+          </h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>High FPS Mode</h4>
+              <p>Enable 90/120 FPS support</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="highfps">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Reduce Bloom Effect</h4>
+              <p>Decrease visual distractions</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="bloom">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Anti-Aliasing</h4>
+              <p>Improve graphics quality</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="antialiasing">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- CONTROLS OPTIMIZATION -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-hand-pointer"></i>
+            CONTROLS OPTIMIZATION
+          </h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Touch Response Boost</h4>
+              <p>Improve touchscreen sensitivity</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="touch">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Auto-Fire Optimization</h4>
+              <p>Optimize automatic firing</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="autofire">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>3D Touch Sensitivity</h4>
+              <p>Adjust 3D Touch for shooting</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="threedtouch">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- iOS GAMING FEATURES -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-mobile-alt"></i>
+            iOS GAMING FEATURES
+          </h3>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Low Power Mode Off</h4>
+              <p>Disable iOS power saving for max FPS</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="lowpowermode">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Do Not Disturb</h4>
+              <p>Auto enable DND when gaming</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="dndmode">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Auto-Lock Disable</h4>
+              <p>Prevent screen from sleeping</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="autolock">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Reduce Motion</h4>
+              <p>Disable iOS animations for performance</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="reducemotion">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- NETWORK OPTIMIZATION -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-wifi"></i>
+            NETWORK OPTIMIZATION
+          </h3>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Wi-Fi Priority</h4>
+              <p>Force stable Wi-Fi connection</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="wifipriority">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Background App Refresh Off</h4>
+              <p>Disable background data usage</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="backgroundrefresh">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Free Fire Features -->
+  <div id="freefireScreen" class="screen">
+    <div class="container">
+      <div class="header-nav">
+        <button class="back-btn" onclick="showScreen('mainScreen')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="page-title">Free Fire Features</h2>
+      </div>
+      
+      <div class="settings-content">
+        <!-- FREE FIRE SETTINGS SECTION -->
+        <div class="section-card">
+          <h3 class="section-title">
+            <i class="fas fa-gamepad"></i>
+            FREE FIRE FEATURES
+          </h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Aim Assist</h4>
+              <p>Automatic aiming assistance</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="aim">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Anti-Ban Protection</h4>
+              <p>Prevent detection & bans</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="antiban">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <!-- FITUR HEADSHOT -->
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Headshot Optimization</h4>
+              <p>Improve headshot accuracy</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="headshot">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <!-- FITUR BARU 2: Recoil Control -->
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Recoil Control</h4>
+              <p>Reduce weapon recoil for accuracy</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="recoilcontrol">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div style="margin-top: 15px; padding: 12px; background: rgba(255,122,0,0.1); border-radius: 10px; border: 1px solid rgba(255,122,0,0.2);">
+            <p style="font-size: 12px; color: #ff7a00; text-align: center; margin: 0;">
+              <i class="fas fa-info-circle" style="margin-right: 5px;"></i>
+              These features are optional. Saii will launch Free Fire regardless.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Saii Process -->
+  <div id="saiiScreen" class="screen">
+    <div class="container">
+      <!-- Terminal Effect Background -->
+      <div class="terminal-bg"></div>
+      
+      <div class="saii-content">
+        <!-- Header -->
+        <div class="saii-header">
+          <div class="saii-logo">
+            <div class="logo-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div class="logo-text">
+              <h1 class="saii-title">SaiKuto</h1>
+              <p class="saii-subtitle">IOS 14.0 - 26.1</p>
+              <p class="saii-author">by Kutoo • Lifetime Access</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Process Area -->
+        <div class="process-area">
+          <div class="process-header">
+            <div class="animated-icon">
+              <div class="icon-core">
+                <i class="fas fa-terminal"></i>
+              </div>
+              <div class="icon-ring"></div>
+              <div class="icon-pulse"></div>
+            </div>
+            <h2 class="process-title">Saii Process</h2>
+          </div>
+          
+          <!-- Terminal Output -->
+          <div class="terminal-output">
+            <div class="terminal-line" id="line1">
+              <span class="prompt">$></span>
+              <span class="command">sudo ./saii.sh --target freefire</span>
+            </div>
+            
+            <div class="terminal-line typing" id="line2">
+              <span class="prompt">$></span>
+              <span class="text" id="text2"></span>
+            </div>
+            
+            <div class="terminal-line" id="line3">
+              <span class="prompt">$></span>
+              <span class="text" id="text3"></span>
+            </div>
+            
+            <div class="terminal-line" id="line4">
+              <span class="prompt">$></span>
+              <span class="text" id="text4"></span>
+            </div>
+            
+            <div class="terminal-line" id="line5">
+              <span class="prompt">$></span>
+              <span class="text" id="text5"></span>
+            </div>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="terminal-progress">
+            <div class="progress-label">
+              <span>Initializing...</span>
+              <span class="progress-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar" id="progressBar"></div>
+              <div class="progress-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 5: Credits -->
+  <div id="creditsScreen" class="screen">
+    <div class="container">
+      <div class="header-nav">
+        <button class="back-btn" onclick="showScreen('mainScreen')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="page-title">Credits</h2>
+      </div>
+      
+      <div class="credits-content">
+        <!-- Developer Info -->
+        <div class="info-card">
+          <h4><i class="fas fa-mobile-alt"></i> iOS Support</h4>
+          <p>14.0 - 26.1 (Lifetime Access)</p>
+        </div>
+        
+        <div class="info-card">
+          <h4><i class="fas fa-gamepad"></i> Free Fire Launch</h4>
+          <p>Direct game launch system</p>
+        </div>
+        
+        <div class="info-card">
+          <h4><i class="fas fa-shield-alt"></i> Optional Features</h4>
+          <p>Aim Assist • Anti-Ban Protection</p>
+        </div>
+        
+        <div class="info-card">
+          <h4><i class="fas fa-key"></i> Access Key System</h4>
+          <p>Lifetime access keys</p>
+        </div>
+        
+        <div class="disclaimer">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>This tool is for educational purposes only. Use at your own risk.</p>
+        </div>
+        
+        <!-- Debug Buttons -->
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+          <div style="display: flex; gap: 10px;">
+            <button onclick="clearSession()" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #ff0058, #ff0000); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">
+              <i class="fas fa-sign-out-alt"></i> Clear Session
+            </button>
+            <button onclick="location.reload()" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #ff7a00, #ff5500); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">
+              <i class="fas fa-sync-alt"></i> Reload App
+            </button>
+          </div>
+          <button onclick="localStorage.removeItem('saiSetupCompleted'); localStorage.removeItem('dnsStepStarted'); location.reload();" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #00ffaa, #0077ff); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">
+            <i class="fas fa-redo-alt"></i> Reset Setup Assistant
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="notification" class="notification">
+    <div class="notification-icon">
+      <i class="fas fa-info-circle"></i>
+    </div>
+    <span id="notificationText"></span>
+  </div>
+
+  <!-- Install Prompt -->
+  <div id="installPrompt" class="install-prompt hidden">
+    <div class="install-text">
+      <i class="fas fa-mobile-alt"></i> Install SaiKuto as PWA
+    </div>
+    <button id="installBtn" class="install-btn">Install</button>
+    <button id="closeInstall" class="close-install">×</button>
+  </div>
+
+  <script src="script.js?v=2025"></script>
+</body>
+</html>
